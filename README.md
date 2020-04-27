@@ -5,7 +5,7 @@ Research one problem that interests you related to algorithms, and find two solu
 ### Problem
 Settled on the Maximum Subarray Problem. The problem is as follows
 ### Applications
-The Maximum Subarray Problem has some interesting applications related to it. Some of the most interesting applications are...
+The Maximum Subarray Problem has some interesting applications related to it. Some of the most interesting applications are...\n
 1.
 ### Presentation
 To view the final presentation, click on the final-presentation.pdf file in the repository. 
