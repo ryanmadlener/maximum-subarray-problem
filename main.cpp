@@ -12,7 +12,7 @@ int main() {
     Processing calculate;
 
     // Initial size of test array
-    int arrSize = 1000;
+    int arrSize = 10000;
 
     // Variables for timing
     std::chrono::time_point<std::chrono::system_clock> startTime;
@@ -50,7 +50,7 @@ int main() {
         calculateTime(startTime, endTime);
 
         // Incrementing size of array for more tests
-        arrSize += 10000;
+        arrSize += 20000;
     }
 
     return(0);
@@ -67,7 +67,7 @@ void calculateTime(std::chrono::time_point<std::chrono::system_clock> startTime,
                         std::chrono::time_point<std::chrono::system_clock> endTime) {
 
     // Variable for time
-    std::chrono::duration<double> elapsedSeconds{};
+    std::chrono::duration<double> elapsedSeconds;
 
     // Calculating time
     elapsedSeconds = endTime - startTime;
