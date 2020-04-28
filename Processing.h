@@ -1,13 +1,11 @@
-//
-// Created by Ryanm on 4/27/2020.
-//
-
 #ifndef MAXIMUM_SUBARRAY_PROBLEM_PROCESSING_H
 #define MAXIMUM_SUBARRAY_PROBLEM_PROCESSING_H
 
-
+/**
+ *
+ */
 class Processing {
-
+    
 };
 
 
