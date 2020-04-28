@@ -12,6 +12,10 @@ int main() {
     // Variables for timing
     std::chrono::time_point<std::chrono::system_clock> startTime;
     std::chrono::time_point<std::chrono::system_clock> endTime;
+    std::chrono::duration<double> elapsedSeconds;
+
+    // Setting the random seed
+    std::srand(std::time(0));
 
     // Loop that executes five times changing the
     // size of the test arrays
@@ -30,12 +34,22 @@ int main() {
         std::cout << "Brute Force: " << calculate.bruteForce(arr, size) << std::endl;
         endTime = std::chrono::high_resolution_clock::now();
 
+        // Calculating time elapsed for brute force
+        elapsedSeconds = endTime - startTime;
+        std::cout << "Time in Seconds: " << elapsedSeconds.count()
+                    << std::endl << std::endl;
+
         // Timing for Kadane's Algorithm
         startTime = std::chrono::high_resolution_clock::now();
         std::cout << "Kadane's: " << calculate.kadane(arr, size) << std::endl;
         endTime = std::chrono::high_resolution_clock::now();
 
-        // Incrementing size of array
+        // Calculating time elapsed for Kadane's
+        elapsedSeconds = endTime - startTime;
+        std::cout << "Time in Seconds: " << elapsedSeconds.count()
+                    << std::endl << std::endl;
+
+        // Incrementing size of array for more tests
         size += 10000;
     }
 
