@@ -2,6 +2,11 @@
 #include <chrono>
 #include "Processing.h"
 
+// Function that calculates the elapsed time for functions
+void calculateTime(std::chrono::time_point<std::chrono::system_clock> startTime,
+                        std::chrono::time_point<std::chrono::system_clock> endTime);
+
+
 int main() {
     // Creating the calculation object
     Processing calculate;
@@ -12,10 +17,9 @@ int main() {
     // Variables for timing
     std::chrono::time_point<std::chrono::system_clock> startTime;
     std::chrono::time_point<std::chrono::system_clock> endTime;
-    std::chrono::duration<double> elapsedSeconds;
 
     // Setting the random seed
-    std::srand(std::time(0));
+    std::srand(std::time(nullptr));
 
     // Loop that executes five times changing the
     // size of the test arrays
@@ -34,24 +38,37 @@ int main() {
         std::cout << "Brute Force: " << calculate.bruteForce(arr, size) << std::endl;
         endTime = std::chrono::high_resolution_clock::now();
 
-        // Calculating time elapsed for brute force
-        elapsedSeconds = endTime - startTime;
-        std::cout << "Time in Seconds: " << elapsedSeconds.count()
-                    << std::endl << std::endl;
+        // Calling function that calculates time
+        calculateTime(startTime, endTime);
 
         // Timing for Kadane's Algorithm
         startTime = std::chrono::high_resolution_clock::now();
         std::cout << "Kadane's: " << calculate.kadane(arr, size) << std::endl;
         endTime = std::chrono::high_resolution_clock::now();
 
-        // Calculating time elapsed for Kadane's
-        elapsedSeconds = endTime - startTime;
-        std::cout << "Time in Seconds: " << elapsedSeconds.count()
-                    << std::endl << std::endl;
+        // Calling function that calculates time
+        calculateTime(startTime, endTime);
 
         // Incrementing size of array for more tests
         size += 10000;
     }
 
     return(0);
+}
+
+
+/**
+ * @brief - Function that calculates the elapsed time and
+ * prints it to the console
+ * @param startTime - The starting time
+ * @param endTime - The ending time
+ */
+void calculateTime(std::chrono::time_point<std::chrono::system_clock> startTime,
+                        std::chrono::time_point<std::chrono::system_clock> endTime) {
+
+    std::chrono::duration<double> elapsedSeconds;
+
+    elapsedSeconds = endTime - startTime;
+    std::cout << "Time in Seconds: " << elapsedSeconds.count()
+              << std::endl << std::endl;
 }
