@@ -9,15 +9,18 @@ void calculateTime(std::chrono::time_point<std::chrono::system_clock> startTime,
                         std::chrono::time_point<std::chrono::system_clock> endTime);
 
 int main() {
-    // Initial size of test array
+    // Initial size of test array and the number of tests done
+    // along with how many elements will be added to each test
     int arrSize = 10000;
+    int numTests = 5;
+    int sizeIncrement = 20000;
 
     // Setting the random seed
     std::srand(std::time(nullptr));
 
     // Loop that executes five times increasing the
     // size of the test arrays by 10,000 each time
-    for (int x = 0; x < 5; x++) {
+    for (int x = 0; x < numTests; x++) {
         // Array that will be processed
         int arr[arrSize];
 
@@ -31,7 +34,7 @@ int main() {
         runTest(arr, arrSize);
 
         // Incrementing size of array for more tests
-        arrSize += 20000;
+        arrSize += sizeIncrement;
     }
 
     return(0);
