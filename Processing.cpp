@@ -13,7 +13,7 @@ Processing::Processing() {
 /**
  * @brief - The brute force implementation of
  * finding the maximum subarray.
- * @param data - The array that will be processed
+ * @param arr - The array that will be processed
  * @param arrSize - The size of the array, used to
  * iterate over the data
  * @return - The size of the max subarray
@@ -41,8 +41,8 @@ int Processing::bruteForce(const int arr[], const int arrSize) {
 /**
  * @brief - Implementation of Kadane's Algorithm
  * to find the Maximum Subarray.
- * @param data - The array that will be processed
- * @param size - The size of the array, used to
+ * @param arr - The array that will be processed
+ * @param arrSize - The size of the array, used to
  * iterate over the data
  * @return - The size of the max subarray
  */
