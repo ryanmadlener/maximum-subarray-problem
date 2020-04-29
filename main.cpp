@@ -3,26 +3,21 @@
 #include "Processing.h"
 
 
+void runTest(int arr[], int arrSize);
 void calculateTime(std::chrono::time_point<std::chrono::system_clock> startTime,
                         std::chrono::time_point<std::chrono::system_clock> endTime);
 
 
-int main() {
-    // Creating the calculation object
-    Processing calculate;
 
+int main() {
     // Initial size of test array
     int arrSize = 10000;
-
-    // Variables for timing
-    std::chrono::time_point<std::chrono::system_clock> startTime;
-    std::chrono::time_point<std::chrono::system_clock> endTime;
 
     // Setting the random seed
     std::srand(std::time(nullptr));
 
     // Loop that executes five times increasing the
-    // size of the test arrays
+    // size of the test arrays by 10,000 each time
     for (int x = 0; x < 5; x++) {
         // Array that will be processed
         int arr[arrSize];
@@ -33,21 +28,8 @@ int main() {
             arr[i] = randNum;
         }
 
-        // Timing for the brute force algorithm
-        startTime = std::chrono::high_resolution_clock::now();
-        std::cout << "Brute Force: " << calculate.bruteForce(arr, arrSize) << std::endl;
-        endTime = std::chrono::high_resolution_clock::now();
-
-        // Calling function that calculates time
-        calculateTime(startTime, endTime);
-
-        // Timing for Kadane's Algorithm
-        startTime = std::chrono::high_resolution_clock::now();
-        std::cout << "Kadane's: " << calculate.kadane(arr, arrSize) << std::endl;
-        endTime = std::chrono::high_resolution_clock::now();
-
-        // Calling function that calculates time
-        calculateTime(startTime, endTime);
+        // Running the tests with the generated array
+        runTest(arr, arrSize);
 
         // Incrementing size of array for more tests
         arrSize += 20000;
@@ -57,9 +39,35 @@ int main() {
 }
 
 
+void runTest(int arr[], int arrSize) {
+    // Creating the calculation object
+    Processing calculate;
+
+    // Variables for timing
+    std::chrono::time_point<std::chrono::system_clock> startTime;
+    std::chrono::time_point<std::chrono::system_clock> endTime;
+
+    // Timing for the brute force algorithm
+    startTime = std::chrono::high_resolution_clock::now();
+    std::cout << "Brute Force: " << calculate.bruteForce(arr, arrSize) << std::endl;
+    endTime = std::chrono::high_resolution_clock::now();
+
+    // Calling function that calculates time
+    calculateTime(startTime, endTime);
+
+    // Timing for Kadane's Algorithm
+    startTime = std::chrono::high_resolution_clock::now();
+    std::cout << "Kadane's: " << calculate.kadane(arr, arrSize) << std::endl;
+    endTime = std::chrono::high_resolution_clock::now();
+
+    // Calling function that calculates time
+    calculateTime(startTime, endTime);
+}
+
+
 /**
- * @brief - Function that calculates the elapsed time and
- * prints it to the console
+ * @brief - Function that calculates the elapsed time of
+ * the function calls and prints it to the console
  * @param startTime - The starting time
  * @param endTime - The ending time
  */
