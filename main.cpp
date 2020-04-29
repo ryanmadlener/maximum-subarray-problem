@@ -3,6 +3,7 @@
 #include "Processing.h"
 
 
+// Helper functions
 void runTest(int arr[], int arrSize);
 void calculateTime(std::chrono::time_point<std::chrono::system_clock> startTime,
                         std::chrono::time_point<std::chrono::system_clock> endTime);
@@ -39,6 +40,13 @@ int main() {
 }
 
 
+/**
+ * @brief - Runs both algorithms against an array
+ * and calculates the time printing the results
+ * to the console
+ * @param arr - The array that will be processed
+ * @param arrSize - The size of that array
+ */
 void runTest(int arr[], int arrSize) {
     // Creating the calculation object
     Processing calculate;
@@ -80,6 +88,5 @@ void calculateTime(std::chrono::time_point<std::chrono::system_clock> startTime,
     // Calculating time
     elapsedSeconds = endTime - startTime;
 
-    std::cout << "Time in Seconds: " << elapsedSeconds.count()
-              << std::endl << std::endl;
+    std::cout << "Time in Seconds: " << elapsedSeconds.count() << std::endl << std::endl;
 }
