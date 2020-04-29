@@ -8,8 +8,6 @@ void runTest(int arr[], int arrSize);
 void calculateTime(std::chrono::time_point<std::chrono::system_clock> startTime,
                         std::chrono::time_point<std::chrono::system_clock> endTime);
 
-
-
 int main() {
     // Initial size of test array
     int arrSize = 10000;
