@@ -9,7 +9,7 @@
  * @param - Since the passed parameters,
  * data and size should not change, they
  * have been declared as const to avoid
- * an unforeseen errors
+ * any unforeseen errors
  */
 class Processing {
     private:
@@ -18,8 +18,8 @@ class Processing {
 
     public:
         Processing();
-        int bruteForce(const int data[], const int size);
-        int kadane(const int data[], const int size);
+        int bruteForce(const int arr[], const int arrSize);
+        int kadane(const int arr[], const int arrSize);
 };
 
 #endif //MAXIMUM_SUBARRAY_PROBLEM_PROCESSING_H

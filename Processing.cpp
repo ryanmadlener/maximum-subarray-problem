@@ -14,19 +14,19 @@ Processing::Processing() {
  * @brief - The brute force implementation of
  * finding the maximum subarray.
  * @param data - The array that will be processed
- * @param size - The size of the array, used to
+ * @param arrSize - The size of the array, used to
  * iterate over the data
  * @return - The size of the max subarray
  */
-int Processing::bruteForce(const int data[], const int size) {
+int Processing::bruteForce(const int arr[], const int arrSize) {
     // Resetting max variable
     max = 0;
 
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < arrSize; i++) {
         currentMax = 0;
 
-        for (int x = i; x < size; x++) {
-            currentMax += data[x];
+        for (int x = i; x < arrSize; x++) {
+            currentMax += arr[x];
 
             if (currentMax > max) {
                 max = currentMax;
@@ -46,13 +46,13 @@ int Processing::bruteForce(const int data[], const int size) {
  * iterate over the data
  * @return - The size of the max subarray
  */
-int Processing::kadane(const int data[], const int size) {
+int Processing::kadane(const int arr[], const int arrSize) {
     // Resetting variables
     max = 0;
     currentMax = 0;
 
-    for (int i = 0; i < size; i++) {
-        currentMax += data[i];
+    for (int i = 0; i < arrSize; i++) {
+        currentMax += arr[i];
 
         if (currentMax < 0) {
             currentMax = 0;
