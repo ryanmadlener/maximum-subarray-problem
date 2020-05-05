@@ -54,6 +54,8 @@ int Processing::kadane(const int arr[], const int arrSize) {
     for (int i = 0; i < arrSize; i++) {
         currentMax += arr[i];
 
+        // If current max has become negative
+        // Reset to zero
         if (currentMax < 0) {
             currentMax = 0;
         }
