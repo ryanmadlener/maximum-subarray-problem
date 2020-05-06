@@ -21,6 +21,8 @@ int main() {
     // Loop that executes five times increasing the
     // size of the test arrays by 10,000 each time
     for (int x = 0; x < numTests; x++) {
+        std::cout << "Array Size: " << arrSize << std::endl;
+
         // Array that will be processed
         int arr[arrSize];
 
