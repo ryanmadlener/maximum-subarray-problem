@@ -1,11 +1,12 @@
 #include <iostream>
+#include <fstream>
 #include <chrono>               // For time keeping
 #include "Processing.h"
 
 
 // Helper functions
-void runTest(int arr[], int arrSize);
-void calculateTime(std::chrono::time_point<std::chrono::system_clock> startTime,
+void runTest(int arr[], int arrSize, std::ofstream& output);
+std::chrono::duration<double> calculateTime(std::chrono::time_point<std::chrono::system_clock> startTime,
                         std::chrono::time_point<std::chrono::system_clock> endTime);
 
 int main() {
@@ -15,13 +16,21 @@ int main() {
     int numTests = 5;
     int sizeIncrement = 20000;
 
+    // ofstream for output file
+    std::ofstream output("output.txt");
+
+    // Checking to make sure file opens
+    if (!output) {
+        std::cout << "Error. Unable to open output file" << std::endl;
+        return(-1);
+    }
+
     // Setting the random seed
     std::srand(std::time(nullptr));
 
     // Loop that executes five times increasing the
     // size of the test arrays by 10,000 each time
     for (int x = 0; x < numTests; x++) {
-        std::cout << "Array Size: " << arrSize << std::endl;
 
         // Array that will be processed
         int arr[arrSize];
@@ -33,7 +42,7 @@ int main() {
         }
 
         // Running the tests with the generated array
-        runTest(arr, arrSize);
+        runTest(arr, arrSize, output);
 
         // Incrementing size of array for more tests
         arrSize += sizeIncrement;
@@ -50,29 +59,34 @@ int main() {
  * @param arr - The array that will be processed
  * @param arrSize - The size of that array
  */
-void runTest(int arr[], int arrSize) {
+void runTest(int arr[], int arrSize, std::ofstream& output) {
+    output << "Array Size: " << arrSize << std::endl;
+
     // Creating the calculation object
     Processing calculate;
 
     // Variables for timing
     std::chrono::time_point<std::chrono::system_clock> startTime;
     std::chrono::time_point<std::chrono::system_clock> endTime;
+    std::chrono::duration<double> elapsedSeconds;
 
     // Timing for the brute force algorithm
     startTime = std::chrono::high_resolution_clock::now();
-    std::cout << "Brute Force: " << calculate.bruteForce(arr, arrSize) << std::endl;
+    output << " Brute Force: " << calculate.bruteForce(arr, arrSize) << std::endl;
     endTime = std::chrono::high_resolution_clock::now();
 
     // Calling function that calculates time
-    calculateTime(startTime, endTime);
+    elapsedSeconds = calculateTime(startTime, endTime);
+    output << " Time in Seconds: " << elapsedSeconds.count() << std::endl;
 
     // Timing for Kadane's Algorithm
     startTime = std::chrono::high_resolution_clock::now();
-    std::cout << "Kadane's: " << calculate.kadane(arr, arrSize) << std::endl;
+    output << " Kadane's: " << calculate.kadane(arr, arrSize) << std::endl;
     endTime = std::chrono::high_resolution_clock::now();
 
     // Calling function that calculates time
-    calculateTime(startTime, endTime);
+    elapsedSeconds = calculateTime(startTime, endTime);
+    output << " Time in Seconds: " << elapsedSeconds.count() << std::endl << std::endl;
 }
 
 
@@ -82,14 +96,8 @@ void runTest(int arr[], int arrSize) {
  * @param startTime - The starting time
  * @param endTime - The ending time
  */
-void calculateTime(std::chrono::time_point<std::chrono::system_clock> startTime,
+std::chrono::duration<double> calculateTime(std::chrono::time_point<std::chrono::system_clock> startTime,
                         std::chrono::time_point<std::chrono::system_clock> endTime) {
 
-    // Variable for time
-    std::chrono::duration<double> elapsedSeconds;
-
-    // Calculating time
-    elapsedSeconds = endTime - startTime;
-
-    std::cout << "Time in Seconds: " << elapsedSeconds.count() << std::endl << std::endl;
+    return(endTime - startTime);
 }
