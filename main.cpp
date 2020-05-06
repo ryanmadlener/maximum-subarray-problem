@@ -55,9 +55,11 @@ int main() {
 /**
  * @brief - Runs both algorithms against an array
  * and calculates the time printing the results
- * to the console
+ * to a file
  * @param arr - The array that will be processed
  * @param arrSize - The size of that array
+ * @param output - The ofstream that outputs
+ * the results to a file
  */
 void runTest(int arr[], int arrSize, std::ofstream& output) {
     output << "Array Size: " << arrSize << std::endl;
@@ -95,6 +97,7 @@ void runTest(int arr[], int arrSize, std::ofstream& output) {
  * the function calls and prints it to the console
  * @param startTime - The starting time
  * @param endTime - The ending time
+ * @return - The elapsed seconds
  */
 std::chrono::duration<double> calculateTime(std::chrono::time_point<std::chrono::system_clock> startTime,
                         std::chrono::time_point<std::chrono::system_clock> endTime) {
